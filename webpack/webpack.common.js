@@ -33,11 +33,7 @@ module.exports = (env) => ({
                     {
                         loader: "responsive-loader",
                         options: {
-                            adapter: require("responsive-loader/sharp"),
-                            sizes: [320, 640, 960, 1200, 1800, 2400],
-                            placeholder: true,
-                            placeholderSize: 20,
-                            disabled: env === "dev"
+                            adapter: require("responsive-loader/sharp")
                         },
                     },
                 ],
@@ -90,11 +86,6 @@ module.exports = (env) => ({
                 {
                     src: path.resolve(__dirname, "..", "web/assets/icons/logo512.png"),
                     sizes: [96, 128, 192, 256, 384, 512]
-                },
-                {
-                    src: path.resolve(__dirname, "..", "web/assets/icons/maskable512.png"),
-                    sizes: [96, 128, 192, 256, 384, 512],
-                    purpose: "maskable"
                 }
             ]
         }),
