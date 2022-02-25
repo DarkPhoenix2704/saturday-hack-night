@@ -2,21 +2,22 @@ import "./Profile.css";
 import "react-toastify/dist/ReactToastify.css";
 import fallbackUser from "../../../../assets/fallbacks/user.png";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { auth, db } from "../../../firebase";
-import { GithubAuthProvider, signInWithPopup } from "firebase/auth";
 import { getDoc, doc, DocumentData, DocumentSnapshot, updateDoc } from "firebase/firestore";
 import { toast, ToastContainer } from "react-toastify";
 function Profile() 
 {
     const [user, setUser] = useState<DocumentSnapshot<DocumentData> | null>(null);
     const [data, setData] = useState({phno: "", email: ""});
+    const navigate = useNavigate();
 
     useEffect(()=>
     {
         auth.onAuthStateChanged(async (authUser) =>
         {
             if (!authUser)
-                signInWithPopup(auth, new GithubAuthProvider());
+                navigate("/");
             else
             {
                 const snap = await getDoc(doc(db, `users/${authUser.uid}`));
