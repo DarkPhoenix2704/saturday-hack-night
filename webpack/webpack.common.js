@@ -54,7 +54,7 @@ module.exports = (env) => ({
     },
     output: {
         path: buildFolder,
-        filename: "bundle.js",
+        filename: "bundle.[contenthash].js",
     },
     plugins: [
         new HtmlWebpackPlugin({
