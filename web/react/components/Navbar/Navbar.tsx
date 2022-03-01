@@ -96,7 +96,17 @@ function Navbar()
                     <Link className="navLink" to='faq' spy={true} smooth={true} offset={-100} duration={500}>
                         FAQ
                     </Link>
-                    <NavLink className="navLink" to='dashboard' >
+                    <NavLink className="navLink" to={user?"dashboard":""} onClick={(event)=>
+                    {
+                        event.preventDefault();
+                        if(user)
+                            navigate("dashboard");
+                        else
+                            signInWithPopup(auth, provider).then(()=>
+                            {
+                                navigate("dashboard");
+                            });
+                    }}>
                         DASHBOARD
                     </NavLink>
                 </div>
