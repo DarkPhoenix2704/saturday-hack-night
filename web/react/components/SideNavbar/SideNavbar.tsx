@@ -17,9 +17,7 @@ function SideNavbar()
         onAuthStateChanged(auth, async (authUser) => 
         {
             if (authUser) 
-            
                 setUser(authUser);
-            
             else 
             {
             //    navigate('/');
@@ -71,7 +69,7 @@ function SideNavbar()
                 <div className="profile_content">
                     <div className="profile">
                         <div className="profileDetails">
-                            <img src={fallbackUser} alt="user" />
+                            <img src={ user?.photoURL || fallbackUser } alt="user" />
                             <div className="name_email">
                                 <div className="name">{user?.displayName}</div>
                                 <div className="email">{user?.email}</div>

@@ -157,7 +157,7 @@
     height: 45px;
     width: 45px;
     object-fit: cover;
-    border-radius: 12px;
+    border-radius: 50%;
 }
 .profile .profileDetails .name{
     margin-left: 10px;
