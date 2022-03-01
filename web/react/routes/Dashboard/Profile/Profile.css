@@ -40,14 +40,28 @@
     padding-block: 4px;
     border-radius: 8px;
 }
+.profileContainer .errorField{
+    border:solid #ff0033 1px;
+}
 .profileContainer .inputField:focus{
     outline: none;
 }
 .profileDetails{
     text-align: center;
     bottom: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: flex-end;
+    flex-wrap: nowrap;
 }
 li{
     list-style: none;
 }
-
+.labelField{
+    text-align: left;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: flex-start;
+}

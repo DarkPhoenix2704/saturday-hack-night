@@ -58,7 +58,7 @@ function Join()
                         <h3>Unable to Join Team</h3><br/>
                     </div>
                     <p>{status.message}</p>
-                    <NavLink className="homeBtn" to="/home">Home</NavLink> 
+                    <NavLink className="homeBtn" to="/">Home</NavLink> 
                 </>
             }
         </div>     

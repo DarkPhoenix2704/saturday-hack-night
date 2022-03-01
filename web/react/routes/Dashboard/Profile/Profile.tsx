@@ -10,6 +10,7 @@ function Profile()
 {
     const [user, setUser] = useState<DocumentSnapshot<DocumentData> | null>(null);
     const [data, setData] = useState({phno: "", email: ""});
+    const [error, setError] = useState({phno:false, email:false});
     const navigate = useNavigate();
 
     useEffect(()=>
@@ -26,22 +27,24 @@ function Profile()
             }
         });
     }, []);
-    function SaveDetails()
+    function validateForm(event) 
     {
+        event.preventDefault();
         if (!data.email || !data.email.match(/^\S+@\S+\.\S+$/gi))
         {
-            console.log("Email err");
-            toast.error("Invalid Email ID", {
-                position:"top-right"
-            });
+            setError((error) => ({...error, email: true}));
             return;
         }
         if (!data.phno || !data.phno.match(/^(\+\d{1,3})?\d{10}$/g))
         {
-            console.log("Num err");
-            toast.error("Invalid Phone Number");
+            setError((error) => ({...error, phno: true}));
             return;
         }
+        setError({phno: false, email: false});
+        SaveDetails();
+    }
+    function SaveDetails()
+    {
         if (!user)
             return;
         updateDoc(user.ref, data).then(()=>
@@ -57,15 +60,23 @@ function Profile()
                 Profile
             </div>
             <div className="profileContainer">
-                <div className="profileDetails">
+                <form className="profileDetails" onSubmit={()=>validateForm(event)}>
                     <img className="userAvatar" src={user?.get("avatar")? user?.get("avatar"):fallbackUser} alt="User"/>
-                    <li/>
-                    <input className="inputField" placeholder="Email" type="email" value={data.email} onChange={ ({target}) => setData((data) => ({...data, email: target.value}))}/>
-                    <li/>
-                    <input className="inputField" placeholder="PhoneNumber" type="phone" value={data.phno} onChange={({target}) => setData((data) => ({...data, phno: target.value}))}/>
-                    <li/>
-                    <button className="btnSave" onClick={SaveDetails}>Save</button>
-                </div>
+                    <br/>
+                    <label className="labelField">
+                        Email 
+                        <br/>
+                        <input className={error.email?"inputField errorField": "inputField"} placeholder="Email" type="email" value={data.email} onChange={ ({target}) => setData((data) => ({...data, email: target.value}))}/>
+                    </label>
+                    <br/>
+                    <label  className="labelField">
+                        PhoneNumber
+                        <br/>
+                        <input className={error.phno?"inputField errorField": "inputField"} placeholder="PhoneNumber" type="phone" value={data.phno} onChange={({target}) => setData((data) => ({...data, phno: target.value}))}/>
+                    </label>
+                    <br/>
+                    <button className="btnSave" type="submit">Save</button>
+                </form>
             </div>
             <ToastContainer/>
         </>
