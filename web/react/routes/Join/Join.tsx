@@ -1,7 +1,7 @@
 import { User, onAuthStateChanged, signInWithPopup, GithubAuthProvider } from "firebase/auth";
 import { httpsCallable } from "firebase/functions";
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, NavLink } from "react-router-dom";
 import { auth, functions } from "../../firebase";
 import { getParams } from "../../utils/index";
 import { RotateCircleLoading } from "react-loadingg";
@@ -45,8 +45,9 @@ function Join()
             {
                 status.state === 1 && 
                 <>
-                    <FontAwesomeIcon icon="check-circle"/>&nbsp;
+                    <FontAwesomeIcon icon="check-circle"/>
                     <h3>Successfully joined team!</h3>
+                    <NavLink className="homeBtn" to="">Home</NavLink> 
                 </>
             }
             {
@@ -57,6 +58,7 @@ function Join()
                         <h3>Unable to Join Team</h3><br/>
                     </div>
                     <p>{status.message}</p>
+                    <NavLink className="homeBtn" to="/home">Home</NavLink> 
                 </>
             }
         </div>     

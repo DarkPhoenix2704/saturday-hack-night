@@ -1,6 +1,5 @@
 .join-container{
     display: flex;
-    margin-top: 36px;
     font-size: 24px;
     height: 100vh;
     flex-direction: column;
@@ -11,5 +10,13 @@
     display: flex;
     align-items: center;
     flex-direction: row;
-
+}
+.homeBtn{
+    padding-inline: 10px;
+    padding-block: 5px;
+    background-color: #600f8f;
+    color: white;
+    border-radius: 10px;
+    margin-block-start: 6px;
+    text-decoration: none;
 }
