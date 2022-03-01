@@ -52,8 +52,11 @@ function Join()
             {
                 status.state === -1 && 
                 <>
-                    <FontAwesomeIcon icon="times"/>&nbsp;
-                    <h3>Unable to Join Team</h3>
+                    <div className="joinError">
+                        <FontAwesomeIcon icon="times"/>&nbsp;
+                        <h3>Unable to Join Team</h3><br/>
+                    </div>
+                    <p>{status.message}</p>
                 </>
             }
         </div>     
