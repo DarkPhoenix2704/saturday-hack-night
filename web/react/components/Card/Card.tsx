@@ -23,6 +23,9 @@ function Card({doc, user, auth}:CardProps)
                     <div className="eventTitle">
                         {doc.get("name")}
                     </div>
+                    <div className="eventDescription">
+                        {doc.get("about")}
+                    </div>
                     <button className="eventButton" onClick={()=>user ? setOpen(true) : signInWithPopup(auth, provider)}>
                     Create Team
                     </button>
