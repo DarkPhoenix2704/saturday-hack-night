@@ -34,7 +34,7 @@ function MemberChips({ onChange }: MemberChipProps)
     }
     async function addUser()
     {
-        const gitHubIds = users.replaceAll(/\s/g, "").split(" ");
+        const gitHubIds = users.replaceAll(/\s/g, "").split(",");
         const newChips: Array<userData> = [];
         setUsers("");
         for (const gid of gitHubIds)
@@ -69,11 +69,11 @@ function MemberChips({ onChange }: MemberChipProps)
                 (event)=>
                 {
                     if(event.key === "Enter" || event.key === ",")
-                    
                         addUser();
-                    
                 }
-            } onChange={(event)=>
+            }
+            value={ users }
+            onChange={(event)=>
             {
                 setUsers(event.target.value);
             }}/>
