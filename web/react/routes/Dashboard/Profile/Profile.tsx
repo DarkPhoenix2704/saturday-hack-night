@@ -30,18 +30,21 @@ function Profile()
     function validateForm(event) 
     {
         event.preventDefault();
-        if (!data.email || !data.email.match(/^\S+@\S+\.\S+$/gi))
-        {
+        const emailNotValid = !data.email || !data.email.match(/^\S+@\S+\.\S+$/gi);
+        const numNotValid = !data.phno || !data.phno.match(/^(\+\d{1,3})?\d{10}$/g);
+        if (emailNotValid) 
             setError((error) => ({...error, email: true}));
-            return;
-        }
-        if (!data.phno || !data.phno.match(/^(\+\d{1,3})?\d{10}$/g))
-        {
+        else
+            setError((error) => ({...error, email: false}));
+        if (numNotValid)
             setError((error) => ({...error, phno: true}));
-            return;
+        else
+            setError((error) => ({...error, phno: false}));
+        if(!emailNotValid && !numNotValid)
+        {
+            setError({phno: false, email: false}); 
+            SaveDetails();
         }
-        setError({phno: false, email: false});
-        SaveDetails();
     }
     function SaveDetails()
     {
