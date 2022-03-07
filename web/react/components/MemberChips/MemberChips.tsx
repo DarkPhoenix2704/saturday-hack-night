@@ -65,18 +65,21 @@ function MemberChips({ onChange }: MemberChipProps)
     }
     return(
         <>
-            <input type="name" placeholder="Members" className="modalInput" onKeyUp={
-                (event)=>
-                {
-                    if(event.key === "Enter" || event.key === ",")
-                        addUser();
+            <label className="labelField">
+
+                <input type="name" placeholder="Members" className="modalInput" onKeyUp={
+                    (event)=>
+                    {
+                        if(event.key === "Enter" || event.key === ",")
+                            addUser();
+                    }
                 }
-            }
-            value={ users }
-            onChange={(event)=>
-            {
-                setUsers(event.target.value);
-            }}/>
+                value={ users }
+                onChange={(event)=>
+                {
+                    setUsers(event.target.value);
+                }}/>
+            </label>
             <div className="chipContainer">
                 {
                     chips.map((user, key)=>

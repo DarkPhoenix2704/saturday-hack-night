@@ -1,13 +1,4 @@
-.modalInput{
-    width: 90%;
-    height: 50px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    padding: 0 10px;
-    margin-inline: 12px;
-    margin-bottom: 10px;
-  }
-  .chipContainer{
+.chipContainer{
     margin-bottom: 8px;
     display: flex;
     margin-inline-start: 16px;
@@ -16,7 +7,7 @@
     width: max-content;
     justify-content: center;
     margin-top: 10px;
-  }
+}
 .chip{
 
   border: none;

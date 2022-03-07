@@ -1,16 +1,15 @@
 import "./Profile.css";
-import "react-toastify/dist/ReactToastify.css";
 import fallbackUser from "../../../../assets/fallbacks/user.png";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth, db } from "../../../firebase";
 import { getDoc, doc, DocumentData, DocumentSnapshot, updateDoc } from "firebase/firestore";
-import { toast, ToastContainer } from "react-toastify";
 function Profile() 
 {
     const [user, setUser] = useState<DocumentSnapshot<DocumentData> | null>(null);
     const [data, setData] = useState({phno: "", email: ""});
     const [error, setError] = useState({phno:false, email:false});
+    const [updated, setUpdated] = useState<boolean>(null);
     const navigate = useNavigate();
 
     useEffect(()=>
@@ -33,11 +32,18 @@ function Profile()
         const emailNotValid = !data.email || !data.email.match(/^\S+@\S+\.\S+$/gi);
         const numNotValid = !data.phno || !data.phno.match(/^(\+\d{1,3})?\d{10}$/g);
         if (emailNotValid) 
+        {
+
             setError((error) => ({...error, email: true}));
+            setUpdated(false);
+        }
         else
             setError((error) => ({...error, email: false}));
-        if (numNotValid)
+        if (numNotValid) 
+        {
             setError((error) => ({...error, phno: true}));
+            setUpdated(false);
+        }
         else
             setError((error) => ({...error, phno: false}));
         if(!emailNotValid && !numNotValid)
@@ -52,9 +58,7 @@ function Profile()
             return;
         updateDoc(user.ref, data).then(()=>
         {
-            toast.success("Updated", {
-                position:"top-right"
-            });
+            setUpdated(true);
         });
     }
     return(
@@ -65,23 +69,22 @@ function Profile()
             <div className="profileContainer">
                 <form className="profileDetails" onSubmit={()=>validateForm(event)}>
                     <img className="userAvatar" src={user?.get("avatar")? user?.get("avatar"):fallbackUser} alt="User"/>
-                    <br/>
                     <label className="labelField">
                         Email 
                         <br/>
                         <input className={error.email?"inputField errorField": "inputField"} placeholder="Email" type="email" value={data.email} onChange={ ({target}) => setData((data) => ({...data, email: target.value}))}/>
+                        {error.email && <p className="text-error">Enter a valid emailID</p>}
                     </label>
-                    <br/>
                     <label  className="labelField">
                         PhoneNumber
                         <br/>
                         <input className={error.phno?"inputField errorField": "inputField"} placeholder="PhoneNumber" type="phone" value={data.phno} onChange={({target}) => setData((data) => ({...data, phno: target.value}))}/>
+                        {error.phno && <p className="text-error">Enter a Valid Number</p> }
                     </label>
-                    <br/>
                     <button className="btnSave" type="submit">Save</button>
+                    { updated && <p className="text-success">Updated Successfully</p>}
                 </form>
             </div>
-            <ToastContainer/>
         </>
     );
 }

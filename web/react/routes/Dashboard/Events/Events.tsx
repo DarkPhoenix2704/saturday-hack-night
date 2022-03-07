@@ -2,11 +2,9 @@ import { onAuthStateChanged, User } from "firebase/auth";
 import { QueryDocumentSnapshot, doc, getDoc, getDocs, collection, query, where, DocumentData } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
 import Card from "../../../components/Card/Card";
 import { auth, db } from "../../../firebase";
 import "./Events.css";
-import "react-toastify/dist/ReactToastify.css";
 
 function Events() 
 {
@@ -42,7 +40,6 @@ function Events()
                     return <Card doc={event} user={user} auth={auth} key={i}/>;
                 })}
             </div>
-            <ToastContainer/>
         </>
     );
 }

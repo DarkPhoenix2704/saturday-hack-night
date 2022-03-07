@@ -7,7 +7,7 @@
 .profileContainer{
     padding-block: 18px;
     text-align: center;
-    transform: translate(0,20%);
+    transform: translate(0,15%);
     padding-inline: 12px;
 }
 .profileContainer .btnSave{
@@ -29,6 +29,7 @@
     width: 128px;
     height: 128px;
     border-radius: 50%;
+    margin-block-end:10px
 }
 .profileContainer .inputField{
     border: none;
@@ -46,7 +47,7 @@
 .profileContainer .inputField:focus{
     outline: none;
 }
-.profileDetails{
+.profileContainer .profileDetails{
     text-align: center;
     bottom: 50%;
     display: flex;
@@ -61,7 +62,18 @@ li{
 .labelField{
     text-align: left;
     display: flex;
+    margin-block-end: 10px;
     flex-wrap: nowrap;
     flex-direction: column;
     align-items: flex-start;
+}
+.text-error{
+    color:#ff0033;
+    font-size: 12px;
+    margin-block: 0px;
+}
+.text-success{
+    color: #4BB543 ;
+    font-size: 12px;
+    margin-block: 0px;
 }

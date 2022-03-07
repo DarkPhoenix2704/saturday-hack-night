@@ -7,16 +7,22 @@
   margin-top: 18px;
 }
 
+p.labelText{
+  margin-left: 15px;
+}
+
 .modalInput{
   width: 90%;
   height: 50px;
   border-radius: 5px;
   border: 1px solid #ccc;
   padding: 0 10px;
+  margin-block: 10px;
   margin-inline: 12px;
-  margin-bottom: 10px;
 }
-
+.modalInputError{
+  border: 1px solid #ff0033;
+}
 .modalContainer{
   position: absolute;
   top: 0;
@@ -45,4 +51,7 @@
 }
 .modalButton:hover{
   transform: scale(1.01);
+}
+.labelField .text-error{
+  margin-inline-start: 15px;
 }

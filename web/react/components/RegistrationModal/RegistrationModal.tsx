@@ -2,7 +2,6 @@ import { User } from "firebase/auth";
 import { addDoc, collection } from "firebase/firestore";
 import React, { useState } from "react";
 import ReactModal from "react-modal";
-import { toast } from "react-toastify";
 import { db } from "../../firebase";
 import MemberChips from "../MemberChips/MemberChips";
 import "./RegistrationModal.css";
@@ -17,26 +16,32 @@ function RegistrationModal({id, setOpen, open, user}:RegistrationModalProps)
 {
     const [members, setMembers] = useState(new Set());  
     const [data, setData] = useState({name:"", repo:""});
+    const [error, setError] = useState({name:false, repo:false});
+    const [status, setStatus] = useState<number>(0);
+    
+    function validateTeam(event)
+    {
+        event.preventDefault();
+        setStatus(0);
+        const repoNotValid = !data.repo.match(/^https:\/\/github.com\/[^\/]+\/[^\/]+$/g);
+        const nameNotValid = !data.name.match(/^[a-z|1-9]+$/gi);
+        if (nameNotValid)
+            setError((error) => ({...error, name:true}));
+        else
+            setError((error) => ({...error, name:false}));
+        if (repoNotValid)
+            setError((error) => ({...error, repo:true}));
+        else
+            setError((error) => ({...error, repo:false}));
+        if (!repoNotValid && !nameNotValid) 
+        {
+            setError({name:false, repo:false});
+            createTeam();
+        }
+    }
     async function createTeam()
     {
-        if (!data.name.match(/^[a-z|1-9]+$/gi))
-        {
-            toast.error("Invalid Team Name", {
-                position: toast.POSITION.TOP_RIGHT
-            });
-            return;
-        }
-            
-            
-        if (!data.repo.match(/^https:\/\/github.com\/[^\/]+\/[^\/]+$/g))
-        {
-            toast.error("Invalid Repo URL", {
-            });
-            return;
-        }
-
         members.delete(user.uid);
-        
         await addDoc(collection(db, `events/${id}/teams`), {
             name: data.name,
             repo: data.repo,
@@ -44,12 +49,13 @@ function RegistrationModal({id, setOpen, open, user}:RegistrationModalProps)
             lead: user.uid
         }).then(()=>
         {
-            toast.success("Team Created Successfully");
+            setStatus(1);
             setMembers(null);
             setData({name:"", repo:""});
-        }).catch(()=>
+        }).catch( err =>
         {
-            toast.error("Team Creation Failed");
+            console.log(err);
+            setStatus(-1);
         });
         
         setOpen(true);
@@ -72,7 +78,7 @@ function RegistrationModal({id, setOpen, open, user}:RegistrationModalProps)
                         left:"50%",
                         transform: "translate(-50%, -50%)",
                         height:"max-content",
-                        width:"max-content",
+                        width:"75%",
                         border: "1px solid #ccc",
                         background: "#fff",
                         overflow: "auto",
@@ -84,15 +90,29 @@ function RegistrationModal({id, setOpen, open, user}:RegistrationModalProps)
                 }
             } parentSelector={()=>document.querySelector("#root")} isOpen={open} onRequestClose={()=>setOpen(false)} shouldCloseOnOverlayClick={true}>
                 <h1 className="modelHead">Create Team</h1>
-                <div className="modelBody">
-                    <input type="text" placeholder="Team Name" className="modalInput" onChange={({target}) => setData((data) => ({...data, name: target.value}))}/>
-                    <input type="text" placeholder="Repo Name" className="modalInput" onChange={({target}) => setData((data) => ({...data, repo: target.value}))}/>
+                <form className="modelBody">
+                    <label className="labelField">
+                        <p className="labelText">
+                            Team Name
+                        </p>
+                        <input type="text" placeholder="Team Name" className={error.name?"modalInput modalInputError":"modalInput"} onChange={({target}) => setData((data) => ({...data, name: target.value}))}/>
+                        {error.name && <p className="text-error">Enter a Valid Team Name</p>}
+                    </label>
+                    <label className="labelField">
+                        <p className="labelText">
+                            RepoLink
+                        </p>
+                        <input type="text" placeholder="Repo Link" className={error.repo?"modalInput modalInputError":"modalInput"} onChange={({target}) => setData((data) => ({...data, repo: target.value}))}/>
+                        {error.repo && <p className="text-error">Enter a Valid Repo</p>}
+                    </label>
                     <MemberChips onChange={(uid, add)=> setMembers((members) => ( add ? members.add(uid) : members.delete(uid) ? members : members))}/>
-                </div>
+                    {status === 1 && <p className="text-success">Team Registration Successful</p>}
+                    {status === -1 && <p className="text-error">Team Registration Failed</p>}
+                </form>
                 <div className="modalFooter">
-                    <button className="modalButton" onClick={()=>
+                    <button className="modalButton" onClick={(event)=>
                     {
-                        createTeam();
+                        validateTeam(event);
                     }}>Create</button>
                     <button className="modalButton" onClick={()=>setOpen(false)}>Cancel</button>
                 </div>
