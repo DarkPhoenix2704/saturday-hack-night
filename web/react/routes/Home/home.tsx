@@ -2,7 +2,7 @@ import homeTitle from "../../../assets/homeTitle.png";
 import homeSubTitle from "../../../assets/homeSubTitle.png";
 import aboutTitle from "../../../assets/aboutTitle.png";
 import faqTitle from "../../../assets/faqTitle.png";
-
+import eventTitle from "../../../assets/eventTitle.png";
 import "./home.css";
 import { Link } from "react-scroll";
 import accordionData from "./accordianData.json";
@@ -11,9 +11,22 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Navbar from "../../components/Navbar/Navbar";
+import { useEffect, useState } from "react";
+import { getDocs } from "@firebase/firestore";
+import { query, collection, DocumentData, QueryDocumentSnapshot, limit } from "firebase/firestore";
+import { db } from "../../firebase";
+import EventCard from "../../components/EventCard/EventCard";
 function Home()
 {
+    const [events, setEvents] = useState<Array<QueryDocumentSnapshot<DocumentData>>>([]);
     library.add(faArrowDown);
+    useEffect(()=>
+    {
+        getDocs(query(collection(db, "events"), limit(3)))
+            .then((snapshot) => setEvents(snapshot.docs))
+            .catch((error) => console.error(error));
+    }, []);
+
     return(
         <div className="home">
             <Navbar/>
@@ -41,7 +54,21 @@ function Home()
                 Discord channels and Instagram page for the latest information and clues!
                 </div>
             </section> 
-        
+            <section className="container" id="events">
+                <img src={eventTitle} className="eventTitleImg" alt="Events"/>
+                <br/>
+                <div className="events">
+                    {
+                        events.map((event, index) => 
+                        {
+                            return (
+                                <EventCard doc={event} key={index}/>
+                            );
+                        })
+                    }
+                </div>
+            
+            </section>
             <section className="container" id="faq">
                 <img src={faqTitle} className="faqTitleImg" alt="FAQ"/>
                 <br/>

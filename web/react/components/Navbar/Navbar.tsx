@@ -93,6 +93,9 @@ function Navbar()
                     <Link className="navLink" to='about' spy={true} smooth={true} offset={-100} duration={500}>
                         ABOUT
                     </Link>
+                    <Link className="navLink" to='events' spy={true} smooth={true} offset={-100} duration={500}>
+                        EVENTS
+                    </Link>
                     <Link className="navLink" to='faq' spy={true} smooth={true} offset={-100} duration={500}>
                         FAQ
                     </Link>
