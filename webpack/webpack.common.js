@@ -4,7 +4,6 @@ const packageJSON = require("../package.json");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WebpackPwaManifest = require("webpack-pwa-manifest");
 const CopyPlugin = require("copy-webpack-plugin");
-const {InjectManifest} = require("workbox-webpack-plugin");
 
 const buildFolder = path.resolve(__dirname, "..", "./public");
 

@@ -1,4 +1,5 @@
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const {InjectManifest} = require("workbox-webpack-plugin");
 
 module.exports = {
     mode: "production",
