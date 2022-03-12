@@ -1,6 +1,6 @@
 const path = require("path");
 const packageJSON = require("../package.json");
-
+const {InjectManifest} = require("workbox-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WebpackPwaManifest = require("webpack-pwa-manifest");
 const CopyPlugin = require("copy-webpack-plugin");
@@ -93,6 +93,12 @@ module.exports = (env) => ({
             patterns: [
                 path.resolve(__dirname, "..", "web/robots.txt"),
             ],
+        }),
+        new InjectManifest({
+            swSrc: path.resolve(__dirname, "..", "web/sw.ts"),
+            exclude: [ /\.map$/, /^manifest.*\.js(?:on)?$/, /\.(jpe?g|png|webp)$/i ],
+            maximumFileSizeToCacheInBytes: 13*1024*1024
+
         })
     ],
     stats: "errors-only"
