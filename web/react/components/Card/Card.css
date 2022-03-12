@@ -1,22 +1,13 @@
-.eventImage{
-    width:250px;
-    height: 175px;
-}
 .eventCard{
     width:300px;
     margin-inline-start: 30px;
     margin-block: 18px;
 }
-.eventTitle{
-    font-size: 24px;
-    margin-top: 2px;
+.eventCard img{
+    width:250px;
+    height: 175px;
 }
-.eventDescription{
-    display: block;
-    font-size: 14px;
-    margin-block: 7px;
-}
-.eventInfo{
+.eventCard .eventInfo{
     width: 250px;
     margin-block: 4px;
     display: flex;
@@ -26,7 +17,17 @@
     justify-content: flex-end;
     flex-direction: column;
 }
-.eventButton{
+.eventCard .eventInfo h3{
+    font-weight: 500;
+    font-size: 24px;
+    margin-top: 2px;
+}
+.eventCard .eventInfo p{
+    display: block;
+    font-size: 14px;
+    margin-block: 7px;
+}
+.eventCard .eventInfo button{
     padding-inline: 10px;
     padding-block: 5px;
     border: none;
@@ -34,6 +35,6 @@
     border-radius: 4px;
     background: linear-gradient(36deg,#e206a8,#b7089f);
 }
-.eventButton:hover{
+.eventCard .eventInfo button:hover{
     transform: scale(1.01);
 }

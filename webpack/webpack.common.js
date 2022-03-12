@@ -54,6 +54,7 @@ module.exports = (env) => ({
     },
     output: {
         path: buildFolder,
+        publicPath: "/",
         filename: "bundle.[contenthash].js",
     },
     plugins: [
@@ -93,10 +94,6 @@ module.exports = (env) => ({
             patterns: [
                 path.resolve(__dirname, "..", "web/robots.txt"),
             ],
-        }),
-        new InjectManifest({
-            swSrc: path.resolve(__dirname, "..", "web/sw.ts"),
-            exclude: [ /\.map$/, /^manifest.*\.js(?:on)?$/, /\.(jpe?g|png|webp)$/i ]
         })
     ],
     stats: "errors-only"

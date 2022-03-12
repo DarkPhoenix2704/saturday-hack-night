@@ -45,16 +45,6 @@ function SideNavbar()
                             Events
                             </span>
                         </NavLink>
-                        <span className="tooltip">Events</span>
-                    </li>
-                    <li>
-                        <NavLink to="" className="disabled">
-                            <FontAwesomeIcon className="icon" icon="trophy"/>
-                            <span className="links_name">
-                            Leaderboard
-                            </span>
-                        </NavLink>
-                        <span className="tooltip">Leaderboard</span>
                     </li>
                     <li>
                         <NavLink to="profile" className="sideNavItem">
@@ -63,7 +53,6 @@ function SideNavbar()
                             Profile
                             </span>
                         </NavLink>
-                        <span className="tooltip">Profile</span>
                     </li>
                 </ul>
                 <div className="profile_content">

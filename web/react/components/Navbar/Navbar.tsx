@@ -53,18 +53,18 @@ function Navbar()
         <>
             <div className="navbar">
                 <div className='brand'>
-                    <img className="brandLogo" src={logo} alt='logo' />
-                    <div className='brandName'>
+                    <img src={logo} alt='logo' />
+                    <h3>
                         &nbsp;Saturday HackNight
-                    </div>
+                    </h3>
                 </div>
-                <div className="navIconCon" tabIndex={0} role="button" onClick={()=>setToggle(!toggle)} onKeyPress={()=>setToggle(!toggle)}>
+                <div className="navIconContainer" tabIndex={0} role="button" onClick={()=>setToggle(!toggle)} onKeyPress={()=>setToggle(!toggle)}>
                     <FontAwesomeIcon icon="bars" className="navIcon" size='2x'/>
                 </div>
                 <div className="userStatus">
                     {
                         user?
-                            <img src={ userAvatar } role="presentation" alt="user.displayName" className="userAvatar" onClick={()=>
+                            <img src={ userAvatar } role="presentation" alt="user.displayName" onClick={()=>
                             {
                                 signOut(auth);
                                 setUser(null);
@@ -75,7 +75,7 @@ function Navbar()
                             }
                             }/>
                             :
-                            <button className='loginBtn' onClick={()=>
+                            <button onClick={()=>
                             {
                                 signInWithPopup(auth, provider).then(()=>
                                 {

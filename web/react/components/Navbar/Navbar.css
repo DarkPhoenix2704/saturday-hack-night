@@ -5,7 +5,7 @@
     background: linear-gradient(rgba(18, 18, 18, 0.2), rgba(18,18,18,0.1));
     border-radius: 4px;
 }
-.brand{
+.navbar .brand{
     padding: 12px;
     display: inline-flex;
     flex-direction: row;
@@ -16,13 +16,52 @@
     font-weight: 400;
 
 }
-.brandName{
+.navbar .brand h3{
     font-weight: 500;
     color: white;
 }
-.brandLogo{
+.navbar .brand img{
     width: 56px;
     height: 56px;
+}
+.navbar .navIconContainer{
+    display:none;
+    align-content: center;
+    align-items: center;
+    margin-inline-end: 15px;
+    margin-top: 15px;
+    padding-top: 4px;
+    float: right;
+}
+.navbar .navIconContainer .navIcon{
+    color: white;
+    height: 35px;
+    width: 35px;
+}
+.navbar .userStatus{
+    color: white;
+    padding-right: 14px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    float: right;
+}
+.navbar .userStatus img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+.navbar .userStatus button{
+    padding-block: 10px;
+    font-weight: 100;
+    font-size: 16px;
+    border-width: 0px;
+    padding-inline: 12px;
+    border-radius: 7px;
+
+}
+.navbar .userStatus button:hover{
+    background: linear-gradient(36deg,#e206a8,#b7089f);
+    color: white;
 }
 .navLinks{
     padding: 14px;
@@ -47,45 +86,6 @@
     background: linear-gradient(36deg,#e206a8,#b7089f);
     color: white;
 }
-.userAvatar{
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-}
-.loginBtn{
-    padding-block: 10px;
-    font-weight: 100;
-    font-size: 16px;
-    border-width: 0px;
-    padding-inline: 12px;
-    border-radius: 7px;
-
-}
-.loginBtn:hover{
-    background: linear-gradient(36deg,#e206a8,#b7089f);
-    color: white;
-}
-.userStatus{
-    color: white;
-    padding-right: 14px;
-    padding-top: 14px;
-    padding-bottom: 14px;
-    float: right;
-}
-.navIconCon{
-    display:none;
-    align-content: center;
-    align-items: center;
-    margin-inline-end: 15px;
-    margin-top: 15px;
-    padding-top: 4px;
-    float: right;
-}
-.navIcon{
-    color: white;
-    height: 35px;
-    width: 35px;
-}
 @media only screen and (max-width:830px){
     .navLinksActive{
         display: flex;
@@ -98,7 +98,7 @@
         margin-inline-end: 2px;
         margin-block-end: 12px;
     }
-    .navIconCon{
+    .navbar .navIconContainer{
         display: block;
     }
 }

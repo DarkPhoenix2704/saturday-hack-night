@@ -1,23 +1,13 @@
-.eventImage{
-    width:250px;
-    height: 175px;
-}
 .eventCardHome{
     width:300px;
     margin-block: 18px;
     color: white;
 }
-.eventTitle{
-    font-size: 24px;
-    margin-top: 2px;
+.eventCardHome img{
+    width:250px;
+    height: 175px;
 }
-.eventDescription{
-    display: block;
-    font-size: 14px;
-    text-align: left;
-    margin-block: 7px;
-}
-.eventInfo{
+.eventCardHome .eventInfo{
     width: 250px;
     margin-block: 4px;
     margin-inline-start: 24px;
@@ -27,4 +17,14 @@
     align-content: flex-start;
     justify-content: flex-end;
     flex-direction: column;
+}
+.eventCardHome .eventInfo h3{
+    font-size: 24px;
+    margin-top: 2px;
+}
+.eventCardHome .eventInfo p{
+    display: block;
+    font-size: 14px;
+    text-align: left;
+    margin-block: 7px;
 }

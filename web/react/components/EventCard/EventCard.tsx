@@ -10,14 +10,14 @@ function EventCard({doc}: EventCardProps)
     return(
         <>
             <div className="eventCardHome">
-                <img src={doc.get("image") || eventImage} alt="event" className="eventImage"/>
+                <img src={doc.get("image") || eventImage} alt="event"/>
                 <div className="eventInfo">
-                    <div className="eventTitle">
+                    <h3>
                         {doc.get("name")}
-                    </div>
-                    <div className="eventDescription">
+                    </h3>
+                    <p>
                         {doc.get("about")}
-                    </div>
+                    </p>
                 </div>
             </div>
         </>

@@ -6,11 +6,19 @@
 }
 .profileContainer{
     padding-block: 18px;
-    text-align: center;
     transform: translate(0,15%);
     padding-inline: 12px;
 }
-.profileContainer .btnSave{
+.profileContainer .profileDetails{
+    text-align: center;
+    bottom: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: flex-end;
+    flex-wrap: nowrap;
+}
+.profileContainer .profileDetails .btnSave{
     border: none;
     font-size: 15px;
     box-shadow: 0.1px 0.2px grey;
@@ -22,16 +30,16 @@
     padding-block: 5px;
     transition: all 0.3s ease;
 }
-.profileContainer .btnSave:hover{
+.profileContainer .profileDetails .btnSave:hover{
     transform: scale(1.01);
 }
-.profileContainer .userAvatar{
+.profileContainer .profileDetails img{
     width: 128px;
     height: 128px;
     border-radius: 50%;
     margin-block-end:10px
 }
-.profileContainer .inputField{
+.profileContainer .profileDetails .inputField{
     border: none;
     width:240px;
     margin-block: 6px;
@@ -41,39 +49,17 @@
     padding-block: 4px;
     border-radius: 8px;
 }
-.profileContainer .errorField{
+.profileContainer .profileDetails .errorField{
     border:solid #ff0033 1px;
 }
-.profileContainer .inputField:focus{
+.profileContainer .profileDetails .inputField:focus{
     outline: none;
 }
-.profileContainer .profileDetails{
-    text-align: center;
-    bottom: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    align-content: flex-end;
-    flex-wrap: nowrap;
-}
-li{
-    list-style: none;
-}
-.labelField{
+.profileContainer .profileDetails label{
     text-align: left;
     display: flex;
     margin-block-end: 10px;
     flex-wrap: nowrap;
     flex-direction: column;
     align-items: flex-start;
-}
-.text-error{
-    color:#ff0033;
-    font-size: 12px;
-    margin-block: 0px;
-}
-.text-success{
-    color: #4BB543 ;
-    font-size: 12px;
-    margin-block: 0px;
 }

@@ -18,15 +18,15 @@ function Card({doc, user, auth}:CardProps)
         <>
             <RegistrationModal id={doc.id} setOpen={setOpen} open={open} user={user}/>
             <div className="eventCard">
-                <img src={doc.get("image") || eventImage} alt="event" className="eventImage"/>
+                <img src={doc.get("image") || eventImage} alt="event"/>
                 <div className="eventInfo">
-                    <div className="eventTitle">
+                    <h4>
                         {doc.get("name")}
-                    </div>
-                    <div className="eventDescription">
+                    </h4>
+                    <p>
                         {doc.get("about")}
-                    </div>
-                    <button className="eventButton" onClick={()=>user ? setOpen(true) : signInWithPopup(auth, provider)}>
+                    </p>
+                    <button onClick={()=>user ? setOpen(true) : signInWithPopup(auth, provider)}>
                     Create Team
                     </button>
                 </div>

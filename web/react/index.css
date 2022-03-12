@@ -4,3 +4,16 @@
   margin: 0px;
   padding: 0px;
 }
+li{
+  list-style: none;
+}
+.text-error{
+  color:#ff0033;
+  font-size: 12px;
+  margin-block: 0px;
+}
+.text-success{
+  color: #4BB543 ;
+  font-size: 12px;
+  margin-top: 5px;
+}
